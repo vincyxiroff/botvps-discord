@@ -34,7 +34,7 @@ onstartupnet = "50000 50000" #Default Global Network Limit (Kbps)
 modperk = "512"
 donatorperk = "512"
 #Limit of User Creations (bypassable by ADMIN creation)
-vpslimit = 50
+vpslimit = 2
 
 
 #User Creation Options
@@ -77,7 +77,7 @@ async def help(ctx):
 #Embed
 
     embed = discord.Embed(title="Help", description="Prefix (-)", color=discord.Color.blue())
-    embed.add_field(name="createvps (ubuntu/debian/archlinux/alpine)", value=f"Allows you to create 1 vps")
+    embed.add_field(name="createvps (ubuntu/debian)", value=f"Allows you to create 1 vps")
     embed.add_field(name="startvps", value=f"Allows you to manage your vps")
     embed.add_field(name="stopvps", value=f"Allows you to manage your vps")
     embed.add_field(name="restartvps", value=f"Allows you to manage your vps")
@@ -131,8 +131,8 @@ Net: {onstartupnet} Kibps
         vpscurrent = vpscurrent.strip("\n")
 #Images
 
-    alpine = "alpine/3.16"
-    archlinux = "archlinux"
+#    alpine = "alpine/3.16"
+#    archlinux = "archlinux"
     ubuntu = "ubuntu/jammy"
     debian = "debian/11"
 #Reply user fetching {using discord API!}
