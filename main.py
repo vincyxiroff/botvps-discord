@@ -11,7 +11,7 @@ client = commands.Bot(command_prefix="-", intents=intents)
 client.remove_command('help')
 version = "1.5"
 
-reqchannel = client.get_channel(1013904571376095333)
+reqchannel = client.get_channel(insertchannelid)
 
 token="DISCORD-BOT-TOKEN" #INSERT HERE UR BOT TOKEN
 logs = "[LOGS] "
@@ -88,98 +88,6 @@ async def help(ctx):
     embed.add_field(name="modperks", value=f"This command applies the Moderator perks")
     embed.add_field(name="donatorperks", value=f"This command applies the Donator perks")
     embed.add_field(name="help", value=f"This Command")
-    embed.set_footer(text = f"Version: {version}")
-    await ctx.reply(embed=embed)
-
-########################################################## - Help Command CN version \/
-
-@client.command()
-@commands.has_role(userrole)
-@commands.check(commandchannelid)
-async def helpcn(ctx):
-
-    logvarcmd = "helpcn"
-    print(f"{logs}User {ctx.author.id} executed {logvarcmd}")
-#Embed
-
-    embed = discord.Embed(title="Help", description="Prefix (-)", color=discord.Color.blue())
-    embed.add_field(name="createvps (ubuntu/debian/archlinux/alpine)", value=f"允许你创建1个vps")
-    embed.add_field(name="startvps", value=f"允许你启动你的vps")
-    embed.add_field(name="stopvps", value=f"允许你停止你的vps")
-    embed.add_field(name="restartvps", value=f"允许你重新启动你的vps")
-    embed.add_field(name="deletevps", value=f"允许你删除你的vps")
-    embed.add_field(name="infovps", value=f"允许你看到你的vps的当前状态。")
-    embed.add_field(name="nodeinfo", value=f"允许你查看节点的当前使用情况")
-    embed.add_field(name="helpcn", value=f"该命令")
-    embed.set_footer(text = f"Version: {version}")
-    await ctx.reply(embed=embed)
-
-########################################################## - Help Command RU version \/
-
-@client.command()
-@commands.has_role(userrole)
-@commands.check(commandchannelid)
-async def helpru(ctx):
-
-    logvarcmd = "helpru"
-    print(f"{logs}User {ctx.author.id} executed {logvarcmd}")
-#Embed
-
-    embed = discord.Embed(title="Help", description="Префикс (-)", color=discord.Color.blue())
-    embed.add_field(name="createvps (ubuntu/debian/archlinux/alpine)", value=f"Позволяет вам создать 1 VPS")
-    embed.add_field(name="startvps", value=f"Позволяет вам запустить ваш")
-    embed.add_field(name="stopvps", value=f"Позволяет вам остановить ваш VPS")
-    embed.add_field(name="restartvps", value=f"Позволяет вам перезагрузить ваш VPS")
-    embed.add_field(name="deletevps", value=f"Позволяет вам удалить ваш VPS")
-    embed.add_field(name="infovps", value=f"Позволяет вам посмотреть статус вашего VPS")
-    embed.add_field(name="nodeinfo", value=f"Позволяет посмотреть вам использование ресурсов ноды")
-    embed.add_field(name="helpru", value=f"Эта команда")
-    embed.set_footer(text = f"Version: {version}")
-    await ctx.reply(embed=embed)
-
-########################################################## - Help Command ES version \/
-
-@client.command()
-@commands.has_role(userrole)
-@commands.check(commandchannelid)
-async def helpes(ctx):
-
-    logvarcmd = "helpes"
-    print(f"{logs}User {ctx.author.id} executed {logvarcmd}")
-#Embed
-
-    embed = discord.Embed(title="Help", description="Prefijo (-)", color=discord.Color.blue())
-    embed.add_field(name="createvps (ubuntu/debian/archlinux/alpine)", value=f"Te permite crear 1 VPS")
-    embed.add_field(name="startvps", value=f"Te permite iniciar tu VPS")
-    embed.add_field(name="stopvps", value=f"Te permite parar tu VPS")
-    embed.add_field(name="restartvps", value=f"Te permite reiniciar tu VPS")
-    embed.add_field(name="deletevps", value=f"Te permite eliminar tu VPS")
-    embed.add_field(name="infovps", value=f"Te permite el estado actual de tu VPS")
-    embed.add_field(name="nodeinfo", value=f"Te permite ver el uso actual del nodo")
-    embed.add_field(name="helpes", value=f"Este comando")
-    embed.set_footer(text = f"Version: {version}")
-    await ctx.reply(embed=embed)
-
-########################################################## - Help Command FR version \/
-
-@client.command()
-@commands.has_role(userrole)
-@commands.check(commandchannelid)
-async def helpfr(ctx):
-
-    logvarcmd = "helpfr"
-    print(f"{logs}User {ctx.author.id} executed {logvarcmd}")
-#Embed
-
-    embed = discord.Embed(title="Help", description="Préfixe (-)", color=discord.Color.blue())
-    embed.add_field(name="createvps (ubuntu/debian/archlinux/alpine)", value=f"Vous permet de créer 1 VPS")
-    embed.add_field(name="startvps", value=f"Vous permet de démarrer votre VPS")
-    embed.add_field(name="stopvps", value=f"Vous permet d'arrêter votre VPS")
-    embed.add_field(name="restartvps", value=f"Permet de redémarrer votre VPS")
-    embed.add_field(name="deletevps", value=f"Vous permet de supprimer votre VPS")
-    embed.add_field(name="infovps", value=f"Permet de voir le statut actuel de votre VPS")
-    embed.add_field(name="nodeinfo", value=f"Permet de voir l'état actuel du nœud")
-    embed.add_field(name="helpfr", value=f"Cette commande")
     embed.set_footer(text = f"Version: {version}")
     await ctx.reply(embed=embed)
 
