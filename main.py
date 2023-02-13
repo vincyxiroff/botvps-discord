@@ -150,7 +150,7 @@ Net: {onstartupnet} Kibps
             checkvethdone = checkveth.split(':', 1)[-1]
         os.system(f"wondershaper {checkvethdone} {onstartupnet}")
     #Set password to container
-        passgen1 = os.popen(f"bash /root/lxcbot/passgen.sh")
+        passgen1 = os.popen(f"bash /root/botvps-discord/passgen.sh")
         passgenout1 = passgen1.readlines()
         for passgen in passgenout1:
             passgen = passgen.strip('\n')
@@ -181,7 +181,7 @@ Panel: http://panel.vpsbot.ml:8888/""")
             checkvethdone = checkveth.split(':', 1)[-1]
         os.system(f"wondershaper {checkvethdone} {onstartupnet}")
     #Set password to container
-        passgen1 = os.popen(f"bash /root/lxcbot/passgen.sh")
+        passgen1 = os.popen(f"bash /root/botvps-discord/passgen.sh")
         passgenout1 = passgen1.readlines()
         for passgen in passgenout1:
             passgen = passgen.strip('\n')
@@ -211,7 +211,7 @@ Panel: http://panel.vpsbot.ml:8888/""")
             checkvethdone = checkveth.split(':', 1)[-1]
         os.system(f"wondershaper {checkvethdone} {onstartupnet}")
     #Set password to container
-        passgen1 = os.popen(f"bash /root/lxcbot/passgen.sh")
+        passgen1 = os.popen(f"bash /root/botvps-discord/passgen.sh")
         passgenout1 = passgen1.readlines()
         for passgen in passgenout1:
             passgen = passgen.strip('\n')
@@ -241,7 +241,7 @@ Panel: http://panel.vpsbot.ml:8888/""")
             checkvethdone = checkveth.split(':', 1)[-1]
         os.system(f"wondershaper {checkvethdone} {onstartupnet}")
     #Set password to container
-        passgen1 = os.popen(f"bash /root/lxcbot/passgen.sh")
+        passgen1 = os.popen(f"bash /root/botvps-discord/passgen.sh")
         passgenout1 = passgen1.readlines()
         for passgen in passgenout1:
             passgen = passgen.strip('\n')
@@ -869,7 +869,7 @@ async def regenpass(ctx):
 #Fetch users using discord API
     user = await client.fetch_user(ctx.author.id)
 #Pass Gen using Bash Script
-    passgen1 = os.popen(f"bash /root/lxcbot/passgen.sh")
+    passgen1 = os.popen(f"bash /root/botvps-discord/passgen.sh")
     passgenout1 = passgen1.readlines()
     for passgen in passgenout1:
         passgen = passgen.strip('\n')
@@ -897,7 +897,7 @@ async def adminregenpass(ctx, id):
 #Fetch users using discord API
     user = await client.fetch_user(ctx.author.id)
 #Pass Gen using Bash Script
-    passgen1 = os.popen(f"bash /root/lxcbot/passgen.sh")
+    passgen1 = os.popen(f"bash /root/botvps-discord/passgen.sh")
     passgenout1 = passgen1.readlines()
     for passgen in passgenout1:
         passgen = passgen.strip('\n')
