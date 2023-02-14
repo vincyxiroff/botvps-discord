@@ -258,6 +258,7 @@ Panel: http://panel.vpsbot.ml:8888/""")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- apt install openssh-server wget -y")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- rm /etc/ssh/sshd_config") # Remove known_hosts file to prevent Bad Host Key error from paramiko in web panel
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/dxomg/sshd_config/main/sshd_config")
+        os.system(f"lxc exec {idprefix}{ctx.author.id} -- systemctl enable ssh --now")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- systemctl restart ssh")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- sh -c 'echo 'root:{passgen}' | chpasswd'")
         await user.send(f"""```yaml
