@@ -251,7 +251,7 @@ Panel: http://panel.vpsbot.ml:8888/""")
         
         os.system("rm .ssh/known_hosts") # Remove known_hosts file to prevent Bad Host Key error from paramiko in web panel
         os.system(f"lxc config device override {idprefix}{ctx.author.id} eth0")
-        os.system(f"lxc config device set {idprefix}{ctx.author.id} eth0 ipv4.address 10.0.30.10")
+        os.system(f"lxc config device set {idprefix}{ctx.author.id} eth0 ipv4.address 83.150.217.111")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- apt update -y")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- apt install openssh-server wget -y")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- rm /etc/ssh/sshd_config") # Remove known_hosts file to prevent Bad Host Key error from paramiko in web panel
