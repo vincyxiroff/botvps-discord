@@ -14,7 +14,6 @@ version = "1.5"
 
 reqchannel = client.get_channel(insertchannelid)
 
-token="DISCORD-BOT-TOKEN" #INSERT HERE UR BOT TOKEN
 logs = "[LOGS] "
 logstofile = "false" #Should we save the logs?
 adminrole = "Admin" #Admin Rolename
@@ -1120,7 +1119,7 @@ async def log(ctx):
     await ctx.send(embed=embed) 
     f.close()
 
-client.run(token)
+client.run("token")
 
 if logstofile == "true":
     sys.stdout.close()
