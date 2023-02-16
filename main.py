@@ -1,4 +1,3 @@
-# change 83.150.217.111 to ur ip
 import discord
 import os
 import sys
@@ -10,12 +9,12 @@ from discord.ext import commands
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix="-", intents=intents)
 client.remove_command('help')
-version = "1.5"
+version = "0.9"
 
 reqchannel = client.get_channel(insertchannelid)
 
 logs = "[LOGS] "
-logstofile = "false" #Should we save the logs?
+logstofile = "false" #Should we save the logs? Don't enable 
 adminrole = "Admin" #Admin Rolename
 modrole = "Mod" #Mod Rolename
 donatorrole = "Donator" #Donator Rolename
@@ -250,9 +249,6 @@ Panel: http://panel.vpsbot.ml:8888/""")
 
         
         os.system("rm .ssh/known_hosts") # Remove known_hosts file to prevent Bad Host Key error from paramiko in web panel
-        os.system(f"lxc config device override {idprefix}{ctx.author.id} eth0")
-        os.system(f"lxc config device set {idprefix}{ctx.author.id} eth0 ipv4.address 83.150.217.111")
-        os.system(f"lxc restart {idprefix}{ctx.author.id}")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- apt update -y")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- apt install openssh-server wget -y")
         os.system(f"lxc exec {idprefix}{ctx.author.id} -- rm /etc/ssh/sshd_config") # Remove known_hosts file to prevent Bad Host Key error from paramiko in web panel
