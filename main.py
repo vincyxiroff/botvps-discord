@@ -132,7 +132,7 @@ Net: {onstartupnet} Kibps
 
 #    alpine = "alpine/3.16"
 #    archlinux = "archlinux"
-    ubuntu = "ubuntu/jammy"
+    ubuntu = "ubuntu/jammy/arm64"
     debian = "debian/11"
 #Reply user fetching {using discord API!}
     user = await client.fetch_user(ctx.author.id)
