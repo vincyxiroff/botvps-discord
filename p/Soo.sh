@@ -15,7 +15,7 @@ lxc exec "$container_name" -- rm -rf /etc/ssh/sshd_config
 lxc exec "$container_name" -- wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/dxomg/sshd_config/main/sshd_config
 lxc exec "$container_name" -- systemctl restart ssh
 lxc exec "$container_name" -- rm -rf /etc/hostname
-lxc exec "$container_name" -- "echo 'UnknownVPS' >> /etc/hostname"
+lxc exec "$container_name" -- "echo 'vincyxirVPS' >> /etc/hostname"
 lxc exec "$container_name" -- passwd
 echo -n "SSH Port: "
 read -r port
