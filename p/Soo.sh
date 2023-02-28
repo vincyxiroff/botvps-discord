@@ -1,5 +1,7 @@
 echo "Starting Container Creation..."
 sleep 2
+echo -n "insert ram: "
+read -r ram
 echo -n "Name the container: "
 read -r container_name
 echo -n "OS: "
@@ -7,7 +9,7 @@ read -r os
 echo "Creating container"
 lxc launch images:"$os" "$container_name"
 lxc config set "$container_name" limits.cpu.allowance 10%
-lxc config set "$container_name" limits.memory 256MB
+lxc config set "$container_name" limits.memory "$ram"
 lxc config device override "$container_name" root size=750MB
 lxc exec "$container_name" -- apt update
 lxc exec "$container_name" -- apt install wget openssh-server -y
