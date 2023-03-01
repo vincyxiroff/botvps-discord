@@ -11,9 +11,9 @@ lxc launch images:"$os" "$container_name"
 lxc config set "$container_name" limits.cpu.allowance 10%
 lxc config set "$container_name" limits.memory "$ram"MB
 lxc config device override "$container_name" root size=750MB
-lxc exec "$container_name" -- wget https://raw.githubusercontent.com/vincyxiroff/scriptvps/main/warp/installwarp.sh
+lxc exec "$container_name" -- wget https://raw.githubusercontent.com/vincyxiroff/scriptvps/main/warp/installwarp.sh && bash installwarp.sh
 lxc exec "$container_name" -- warp o
-lxc exec "$container_name" -- wget https://raw.githubusercontent.com/vincyxiroff/scriptvps/main/warp/installwarp.sh
+lxc exec "$container_name" -- bash installwarp.sh
 lxc exec "$container_name" -- warp o
 lxc exec "$container_name" -- apt update
 lxc exec "$container_name" -- apt install wget openssh-server -y
