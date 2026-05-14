@@ -34,6 +34,8 @@ modperk = "512"
 donatorperk = "512"
 #Limit of User Creations (bypassable by ADMIN creation)
 vpslimit = 2
+ssh_port_start = 22000
+ssh_port_end = 22999
 
 
 #User Creation Options
@@ -44,6 +46,29 @@ if logstofile == "true":
     sys.stdout = open('/root/lxcbot/logs.txt', 'w')
 
 os.spawnlp(os.P_NOWAIT, "/root/lxcbot/webserver.py", "webserver.py")
+
+def get_assigned_ssh_port(container_name):
+    proxy_ports = os.popen(f"lxc config device show {container_name} | grep -Eo 'listen=tcp:0.0.0.0:[0-9]+'").read().splitlines()
+    for entry in proxy_ports:
+        port = int(entry.split(':')[-1])
+        if ssh_port_start <= port <= ssh_port_end:
+            return port
+    return None
+
+def assign_ssh_port(container_name):
+    assigned = get_assigned_ssh_port(container_name)
+    if assigned is not None:
+        return assigned
+
+    for port in range(ssh_port_start, ssh_port_end + 1):
+        in_use = os.popen(f"lxc config show | grep -c 'listen=tcp:0.0.0.0:{port}'").read().strip()
+        if in_use == "0":
+            os.system(
+                f"lxc config device add {container_name} sshproxy proxy "
+                f"listen=tcp:0.0.0.0:{port} connect=tcp:127.0.0.1:22"
+            )
+            return port
+    return None
 
 @client.event
 async def on_ready():
@@ -83,6 +108,7 @@ async def help(ctx):
     embed.add_field(name="deletevps", value=f"Allows you to delete your vps")
     embed.add_field(name="regenpass", value=f"Re-Generate vps password")
     embed.add_field(name="infovps", value=f"Allows you to see the current Status of your vps")
+    embed.add_field(name="sshport", value=f"Assign/show SSH port mapping in configured range")
     embed.add_field(name="nodeinfo", value=f"Allows you to see the current usage of the node")
     embed.add_field(name="modperks", value=f"This command applies the Moderator perks")
     embed.add_field(name="donatorperks", value=f"This command applies the Donator perks")
@@ -707,10 +733,15 @@ async def infovps(ctx):
             checknetlimitdone = "Unmetered"
 
 #Description text
+    ssh_port = get_assigned_ssh_port(f"{idprefix}{ctx.author.id}")
+    if ssh_port is None:
+        ssh_port = "Not assigned"
+
     desc = f"""```yaml
 ID: {idprefix}{ctx.author.id}
 {inforunning}
 IP: {infolocalip}
+SSH Port: {ssh_port}
 Veth: {checkvethdone}
 Cpu: Not Working
 Ram: {infocmem}
@@ -724,6 +755,24 @@ Ram: {infocmem}
     embed.add_field(name="Net↿⇂: ", value=f"{checknetlimitdone}")
     embed.set_footer(text = f"Created: {infocreated} UTC")
     await ctx.reply(embed=embed)
+
+@client.command()
+@commands.has_role(userrole)
+@commands.check(commandchannelid)
+async def sshport(ctx):
+    container_name = f"{idprefix}{ctx.author.id}"
+    port = assign_ssh_port(container_name)
+    if port is None:
+        await ctx.reply(f"No free SSH port available in range {ssh_port_start}-{ssh_port_end}.")
+        return
+
+    info_ip = os.popen(f"lxc info --resources {container_name} | grep -i '{lxcips}'").read().strip()
+    host_ip = info_ip.split('/')[0].split()[-1] if info_ip else "HOST_IP"
+    await ctx.reply(
+        f"SSH ready for `{container_name}`\n"
+        f"`ssh root@{host_ip} -p {port}`\n"
+        f"Port range: `{ssh_port_start}-{ssh_port_end}`"
+    )
 
 ############################# ADMIN version - \/
 
